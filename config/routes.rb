@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :wishes
+  resources :lists do
+    resources :wishes, except: [:index]
+  end
 
   get 'about' => 'welcome#about'
 

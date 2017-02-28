@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170224120609) do
+ActiveRecord::Schema.define(version: 20170224132453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,11 +23,21 @@ ActiveRecord::Schema.define(version: 20170224120609) do
     t.index ["wish_id"], name: "index_comments_on_wish_id", using: :btree
   end
 
+  create_table "lists", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "public",      default: true
+    t.text     "description"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
   create_table "wishes", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "list_id"
+    t.index ["list_id"], name: "index_wishes_on_list_id", using: :btree
   end
 
   add_foreign_key "comments", "wishes"
