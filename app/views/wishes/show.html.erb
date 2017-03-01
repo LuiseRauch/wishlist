@@ -1,4 +1,7 @@
 <h1><%= @wish.title %></h1>
+<small>
+  submitted <%= time_ago_in_words(@wish.created_at) %> ago by <%= @wish.user.username %>
+</small>
 
 <div class="row">
   <div class="col-md-8">

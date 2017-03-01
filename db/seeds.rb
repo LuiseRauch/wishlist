@@ -8,6 +8,17 @@
 
 require 'random_data'
 
+# Create Users
+5.times do
+  User.create!(
+# #3
+  name:     RandomData.random_name,
+  email:    RandomData.random_email,
+  password: RandomData.random_sentence
+  )
+end
+users = User.all
+
 # Create Lists
 15.times do
   List.create!(
@@ -36,6 +47,7 @@ wishes = Wish.all
 end
 
 puts "Seed finished"
+puts "#{User.count} users created"
 puts "#{List.count} lists created"
 puts "#{Wish.count} wishes created"
 puts "#{Comment.count} comments created"

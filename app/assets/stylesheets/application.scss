@@ -15,3 +15,27 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.user-info {
+  margin-top: 9px;
+}
+
+.nav {
+  margin-top: 5px;
+}
+.thumbnail {
+  position: relative;
+  height: 200px;
+  margin: 10px 0;
+  overflow: hidden;
+  border: 0;
+}
+.image_tag {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.form-inline .field_with_errors {
+  display: inline-block;
+}

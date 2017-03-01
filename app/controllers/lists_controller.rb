@@ -16,6 +16,7 @@ class ListsController < ApplicationController
     @list.name = params[:list][:name]
     @list.description = params[:list][:description]
     @list.public = params[:list][:public]
+    @list.user = current_user
 
     if @list.save
       flash[:notice] = "Wishlist was saved successfully."

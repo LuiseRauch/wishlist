@@ -13,6 +13,7 @@ class WishesController < ApplicationController
     @wish.title = params[:wish][:title]
     @wish.body = params[:wish][:body]
     @list = List.find(params[:list_id])
+    @wish.user = current_user
 
     @wish.list = @list
 
