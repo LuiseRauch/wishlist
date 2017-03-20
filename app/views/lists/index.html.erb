@@ -1,21 +1,27 @@
-<h1>Wishlists</h1>
-
-<div class="row">
-  <div class="col-md-8">
-    <% @lists.each do |list| %>
-      <div class="media">
-        <div class="media-body">
-          <h4 class="media-heading">
-            <%= link_to list.name, list %>
-          </h4>
-          <small>
-            <%= list.description %>
-          </small>
-        </div>
-      </div>
-    <% end %>
-  </div>
-  <div class="col-md-4">
-    <%= link_to "New Wishlist", new_list_path, class: 'btn btn-success' %>
+<br>
+<div class="text-center well">
+  <div class="span9">
+    <h1>My Wishlists</h1>
+      <% if policy(List.new).create?%>
+      <%= link_to "New Wishlist", new_list_path, class: 'btn btn-success btn-sm' %>
+      <% end %>
   </div>
 </div>
+<br>
+
+<% @lists.each do |list| %>
+  <div class="row text-center">
+    <div class="col-md-12">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <h4><%= link_to list.name, list %></h4>
+          <small><%= list.description %></small>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-3">
+      <div class="row">
+      </div>
+    </div>
+  </div>
+<% end %>

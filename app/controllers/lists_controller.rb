@@ -9,14 +9,14 @@ class ListsController < ApplicationController
 
   def new
     @list = List.new
+    authorize @list
   end
 
   def create
     @list = List.new
-    @list.name = params[:list][:name]
-    @list.description = params[:list][:description]
-    @list.public = params[:list][:public]
+    @list.assign_attributes(list_params)
     @list.user = current_user
+    authorize @list
 
     if @list.save
       flash[:notice] = "Wishlist was saved successfully."
@@ -29,17 +29,16 @@ class ListsController < ApplicationController
 
   def edit
     @list = List.find(params[:id])
+    authorize @list
   end
 
   def update
     @list = List.find(params[:id])
-
-    @list.name = params[:list][:name]
-    @list.description = params[:list][:description]
-    @list.public = params[:list][:public]
+    @list.assign_attributes(list_params)
+    authorize @list
 
     if @list.save
-       flash[:notice] = "Wishlist was updated successfully."
+      flash[:notice] = "Wishlist was updated successfully."
       redirect_to @list
     else
       flash.now[:alert] = "Error saving wishlist. Please try again."
@@ -49,6 +48,7 @@ class ListsController < ApplicationController
 
   def destroy
     @list = List.find(params[:id])
+    authorize @list
 
     if @list.destroy
       flash[:notice] = "\"#{@list.name}\" was deleted successfully."
@@ -57,5 +57,11 @@ class ListsController < ApplicationController
       flash.now[:alert] = "There was an error deleting the wishlist."
       render :show
     end
+  end
+
+  private
+
+  def list_params
+    params.require(:list).permit(:name, :description, :public)
   end
 end

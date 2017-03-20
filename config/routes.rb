@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
-  devise_for :users
-  
+  resources :users, only: [:show]
+
+  devise_for :users, :path => 'devise'
+
   resources :lists do
     resources :wishes, except: [:index]
   end

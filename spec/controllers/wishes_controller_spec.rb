@@ -83,7 +83,7 @@ RSpec.describe WishesController, type: :controller do
         new_body = RandomData.random_paragraph
 
         put :update, list_id: my_list.id, id: my_wish.id, wish: {title: new_title, body: new_body}
-        expect(response).to redirect_to [my_list, my_wish]
+        expect(response).to redirect_to my_list
       end
     end
 

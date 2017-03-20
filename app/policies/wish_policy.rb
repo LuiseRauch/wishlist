@@ -1,0 +1,3 @@
+
+class WishPolicy < ApplicationPolicy
+end
