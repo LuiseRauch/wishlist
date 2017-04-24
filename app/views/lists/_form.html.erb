@@ -11,14 +11,14 @@
   <% end %>
   <%= form_group_tag(list.errors[:name]) do %>
     <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control', placeholder: "Enter list name" %>
+    <%= f.text_field :name, class: 'form-control', placeholder: "Enter Wishlist name" %>
   <% end %>
   <%= form_group_tag(list.errors[:description]) do %>
     <%= f.label :description %>
-    <%= f.text_area :description, rows: 8, class: 'form-control', placeholder: "Enter list description" %>
+    <%= f.text_area :description, rows: 2, class: 'form-control', placeholder: "Enter Wishlist description" %>
   <% end %>
   <%= form_group_tag(list.errors[:public]) do %>
-    <%= f.label :public, class: 'checkbox' do %>
+    <%= f.label :public, class: 'checkbox-inline' do %>
       <%= f.check_box :public %> Public list
     <% end %>
   <% end %>

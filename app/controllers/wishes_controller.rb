@@ -19,7 +19,7 @@ class WishesController < ApplicationController
 
     if @wish.save
      flash[:notice] = "Wish was saved successfully."
-     redirect_to [@list, @wish]
+     redirect_to @wish.list
     else
      flash.now[:alert] = "There was an error saving the wish. Please try again."
      render :new
