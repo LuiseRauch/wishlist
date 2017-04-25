@@ -7,6 +7,7 @@
 <div class="row">
   <div class="col-md-8">
     <p><%= @wish.body %></p>
+    <p><%= link_to @wish.url, @wish.url %></p>
   </div>
   <div class="col-md-4">
     <%= link_to "Edit", edit_list_wish_path(@wish.list, @wish), class: 'btn btn-info btn-sm' %>

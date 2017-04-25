@@ -12,11 +12,15 @@
   <% end %>
   <%= form_group_tag(wish.errors[:title]) do %>
     <%= f.label :title %>
-    <%= f.text_field :title, class: 'form-control', placeholder: "Enter post title" %>
+    <%= f.text_field :title, class: 'form-control', placeholder: "Enter wish title" %>
   <% end %>
   <%= form_group_tag(wish.errors[:body]) do %>
     <%= f.label :body %>
-    <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter post body" %>
+    <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wish body" %>
+  <% end %>
+  <%= form_group_tag(wish.errors[:body]) do %>
+    <%= f.label :url %>
+    <%= f.url_field :url, class: 'form-control', placeholder: "Enter wish url" %>
   <% end %>
   <div class="form-group">
     <%= f.submit "Save", class: 'btn btn-success' %>
