@@ -6,8 +6,8 @@ class User < ApplicationRecord
 
   attr_accessor :login
 
-  has_many :wishes
-  has_many :lists
+  has_many :wishes, dependent: :destroy
+  has_many :lists, dependent: :destroy
 
   validates :username, length: { minimum: 1, maximum: 100 }, presence: true
   validates :email,

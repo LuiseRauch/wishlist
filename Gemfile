@@ -40,6 +40,8 @@ gem 'devise'
 
 gem 'pundit'
 
+gem 'embedly'
+
 group :production do
   gem 'rails_12factor'
 end

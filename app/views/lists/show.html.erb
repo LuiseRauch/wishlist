@@ -22,7 +22,7 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th>
+          <th colspan="2">
             <h4 class="media-heading">My Wishes for <%= @list.name %></h4>
           </th>
         </tr>
@@ -31,19 +31,23 @@
         <% @list.wishes.each do |wish| %>
           <tr>
             <td>
-              <div class="media">
-                <div class="media-body">
-
-                    <h4 class="media-heading">
-                      <%= link_to wish.title, list_wish_path(@list, wish) %>
-                    </h4>
-                    <small>
-                      submitted <%= time_ago_in_words(wish.created_at) %> ago by <%= wish.user.username %> <br>
-                      <!-- <%= wish.comments.count %> Comments -->
-                    </small>
-                </div>
+              <div class="thumbnail">
+                <% embedly = display(wish.url) %>
+                <%= link_to embedly[:url], :target => '_blank' do %>
+                    <%= image_tag embedly[:thumbnail_url] %>
+                <% end %>
               </div>
             </td>
+            <td>
+              <h4 class="media-heading">
+                <%= link_to wish.title, list_wish_path(@list, wish) %>
+              </h4>
+              <small>
+                submitted <%= time_ago_in_words(wish.created_at) %> ago by <%= wish.user.username %> <br>
+                <!-- <%= wish.comments.count %> Comments -->
+              </small>
+            </td>
+
           </tr>
         <% end %>
       </tbody>
