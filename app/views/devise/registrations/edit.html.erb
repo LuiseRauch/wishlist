@@ -63,10 +63,10 @@
         <% end %>
 
         <div class="form-group">
-          <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+          <%= f.label :password %> <i class="form-text text-muted">(leave blank if you don't want to change it)</i><br />
           <%= f.password_field :password, placeholder: "Enter Password Here..", autocomplete: "off", class: "form-control" %>
           <% if @minimum_password_length %>
-            <em><%= @minimum_password_length %> characters minimum</em>
+            <em class="form-text text-muted" ><%= @minimum_password_length %> characters minimum</em>
           <% end %>
         </div>
 
@@ -76,7 +76,7 @@
         </div>
 
         <div class="form-group">
-          <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+          <%= f.label :current_password %> <i class="form-text text-muted">(we need your current password to confirm your changes)</i><br />
           <%= f.password_field :current_password, placeholder: "Enter Current Password Here..", autocomplete: "off", class: "form-control" %>
         </div>
 
@@ -92,9 +92,11 @@
 <div class="col-lg-12 well">
   <div class="row">
     <div class="col-sm-12">
-      <div class="form-group">
-        <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-warning' %></p>
-      </div>
+      <form class="form-inline">
+        <div class="form-group">
+          <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-warning' %></p>
+        </div>
+      </form>
     </div>
   </div>
 </div>

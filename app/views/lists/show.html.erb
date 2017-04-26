@@ -14,7 +14,6 @@
     <% end %>
   </div>
   <br>
-
 </div>
 
 <div class="row">
@@ -28,7 +27,8 @@
         </tr>
       </thead>
       <tbody>
-        <% @list.wishes.each do |wish| %>
+
+        <% if @list.wishes.each do |wish| %>
           <tr>
             <td>
               <div class="thumbnail">
@@ -47,9 +47,15 @@
                 <!-- <%= wish.comments.count %> Comments -->
               </small>
             </td>
-
+          </tr>
+        <% end.empty? %>
+          <tr>
+            <td colspan="2">
+              <p>No Wishes yet!</p>
+            </td>
           </tr>
         <% end %>
+
       </tbody>
     </table>
   </div>

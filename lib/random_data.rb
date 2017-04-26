@@ -34,8 +34,13 @@ module RandomData
     letters[0,rand(3..8)].join
   end
 
-  def random_url
+  def self.random_url
     url = random_word
     "http://#{url}.com"
+  end
+
+  def self.random_number
+    price = rand(5..200)
+    price.to_s
   end
 end

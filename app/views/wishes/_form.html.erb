@@ -14,13 +14,17 @@
     <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control', placeholder: "Enter wish title" %>
   <% end %>
+  <%= form_group_tag(wish.errors[:url]) do %>
+    <%= f.label :url %>
+    <%= f.url_field :url, class: 'form-control', placeholder: "Enter wish url" %>
+  <% end %>
   <%= form_group_tag(wish.errors[:body]) do %>
     <%= f.label :body %>
     <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wish body" %>
   <% end %>
-  <%= form_group_tag(wish.errors[:body]) do %>
-    <%= f.label :url %>
-    <%= f.url_field :url, class: 'form-control', placeholder: "Enter wish url" %>
+  <%= form_group_tag(wish.errors[:price]) do %>
+    <%= f.label :price %>
+    <%= f.text_field :price, class: 'form-control', placeholder: "Enter price" %>
   <% end %>
   <div class="form-group">
     <%= f.submit "Save", class: 'btn btn-success' %>

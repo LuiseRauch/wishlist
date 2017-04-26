@@ -5,5 +5,6 @@ FactoryGirl.define do
     title RandomData.random_sentence
     body RandomData.random_paragraph
     url RandomData.random_url
+    price RandomData.random_number
   end
 end

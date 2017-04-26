@@ -22,8 +22,8 @@ RSpec.describe Wish, type: :model do
   it { should_not allow_value("example.com").for(:url) }
 
   describe "attributes" do
-    it "has title, body and url attributes" do
-      expect(wish).to have_attributes(title: wish.title, body: wish.body, url: wish.url)
+    it "has title, body, url and price attributes" do
+      expect(wish).to have_attributes(title: wish.title, body: wish.body, url: wish.url, price: wish.price)
     end
   end
 end
