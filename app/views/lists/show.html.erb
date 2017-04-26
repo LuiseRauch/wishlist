@@ -31,14 +31,6 @@
         <% if @list.wishes.each do |wish| %>
           <tr>
             <td>
-              <div class="thumbnail">
-                <% embedly = display(wish.url) %>
-                <%= link_to embedly[:url], :target => '_blank' do %>
-                    <%= image_tag embedly[:thumbnail_url] %>
-                <% end %>
-              </div>
-            </td>
-            <td>
               <h4 class="media-heading">
                 <%= link_to wish.title, list_wish_path(@list, wish) %>
               </h4>
@@ -47,6 +39,16 @@
                 <!-- <%= wish.comments.count %> Comments -->
               </small>
             </td>
+            <% if wish.url.present? %>
+              <td>
+                <div class="thumbnail">
+                  <% embedly = display(wish.url) %>
+                  <%= link_to embedly[:url], :target => '_blank' do %>
+                      <%= image_tag embedly[:thumbnail_url] %>
+                  <% end %>
+                </div>
+              </td>
+            <% end %>
           </tr>
         <% end.empty? %>
           <tr>

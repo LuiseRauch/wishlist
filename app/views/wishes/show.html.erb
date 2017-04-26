@@ -16,33 +16,42 @@
         </caption>
         <tr>
           <th>
-            link
-          </th>
-          <th>
             description
           </th>
+          <% if @wish.url.present? %>
+            <th>
+              link
+            </th>
+          <% end %>
+          <% if @wish.price.present? %>
           <th>
             price
           </th>
+          <% end %>
+
         </tr>
       </thead>
 
       <tbody>
         <tr>
           <td>
-            <div class="thumbnail">
-              <% embedly = display(@wish.url) %>
-              <%= link_to embedly[:url], :target => '_blank' do %>
-                  <%= image_tag embedly[:thumbnail_url] %>
-              <% end %>
-            </div>
-          </td>
-          <td>
             <p><%= @wish.body %></p>
           </td>
-          <td>
-            <p><%= @wish.price %></p>
-          </td>
+          <% if @wish.url.present? %>
+            <td>
+              <div class="thumbnail">
+                <% embedly = display(@wish.url) %>
+                <%= link_to embedly[:url], :target => '_blank' do %>
+                    <%= image_tag embedly[:thumbnail_url] %>
+                <% end %>
+              </div>
+            </td>
+          <% end %>
+          <% if @wish.price.present? %>
+            <td>
+              <p><%= @wish.price %></p>
+            </td>
+          <% end %>
         </tr>
       </tbody>
 
