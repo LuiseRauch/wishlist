@@ -1,0 +1,17 @@
+{
+  "name": "wishlist",
+  "homepage": "https://github.com/LuiseRauch/wishlist",
+  "authors": [
+    "LuiseRauch <luise.rauch@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
