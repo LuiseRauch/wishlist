@@ -31,6 +31,7 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 
 gem 'bower-rails'
+gem 'angular-rails-templates'
 
 gem 'country_select'
 
