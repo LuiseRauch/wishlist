@@ -4,4 +4,8 @@ class List < ApplicationRecord
 
   validates :name, length: { minimum: 1, maximum: 100 }, presence: true
   validates :user, presence: true
+
+  extend FriendlyId
+  friendly_id :name, use: [:slugged, :history]
+
 end

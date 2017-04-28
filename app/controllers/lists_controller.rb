@@ -7,7 +7,7 @@ class ListsController < ApplicationController
   end
 
   def show
-    @list = List.find(params[:id])
+    @list = List.friendly.find(params[:id])
   end
 
   def new
@@ -31,12 +31,12 @@ class ListsController < ApplicationController
   end
 
   def edit
-    @list = List.find(params[:id])
+    @list = List.friendly.find(params[:id])
     authorize @list
   end
 
   def update
-    @list = List.find(params[:id])
+    @list = List.friendly.find(params[:id])
     @list.assign_attributes(list_params)
     authorize @list
 
@@ -50,7 +50,7 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    @list = List.find(params[:id])
+    @list = List.friendly.find(params[:id])
     authorize @list
 
     if @list.destroy

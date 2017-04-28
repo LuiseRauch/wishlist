@@ -3,12 +3,12 @@ require 'json'
 
 class WishesController < ApplicationController
   def show
-    @wish = Wish.find(params[:id])
+    @wish = Wish.friendly.find(params[:id])
     EmbedlyHelper
   end
 
   def new
-    @list = List.find(params[:list_id])
+    @list = List.friendly.find(params[:list_id])
     @wish = Wish.new
     authorize @wish
   end
@@ -16,7 +16,7 @@ class WishesController < ApplicationController
   def create
     @wish = Wish.new
     @wish.assign_attributes(wish_params)
-    @list = List.find(params[:list_id])
+    @list = List.friendly.find(params[:list_id])
     @wish.user = current_user
     @wish.list = @list
     authorize @wish
@@ -31,12 +31,13 @@ class WishesController < ApplicationController
   end
 
   def edit
-    @wish = Wish.find(params[:id])
+    @wish = Wish.friendly.find(params[:id])
     authorize @wish
   end
 
   def update
-    @wish = Wish.find(params[:id])
+    @list = List.friendly.find(params[:list_id])
+    @wish = Wish.friendly.find(params[:id])
     @wish.assign_attributes(wish_params)
     authorize @wish
 
@@ -50,7 +51,7 @@ class WishesController < ApplicationController
   end
 
   def destroy
-    @wish = Wish.find(params[:id])
+    @wish = Wish.friendly.find(params[:id])
     authorize @wish
 
     if @wish.destroy

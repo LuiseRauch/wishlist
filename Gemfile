@@ -35,6 +35,8 @@ gem 'angular-rails-templates'
 
 gem 'country_select'
 
+gem 'friendly_id'
+
 gem 'figaro', '1.0'
 
 gem 'bootstrap-sass'
