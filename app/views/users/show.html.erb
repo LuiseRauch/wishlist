@@ -3,3 +3,25 @@
     <h2>Hi <%= @current_user.username %>!</h2>
     <%= link_to 'Edit profile', edit_user_registration_path(@user) %>
 </div>
+
+
+
+<div class="row text-center">
+  <h2>My Wishes</h2>
+    <% @user_wishes_lists.each do |list, wishes| %>
+      <div class="col-md-12">
+        <strong><%= link_to list.name, list %></strong><br />
+        <% wishes.each do |wish| %>
+        <div class="col-md-3">
+          <strong><%= wish.title %></strong><br />
+          <div class="thumbnail">
+            <% embedly = display(wish.url) %>
+            <%= link_to embedly[:url], :target => '_blank' do %>
+                <%= image_tag embedly[:thumbnail_url] %>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    <% end %>
+</div>
