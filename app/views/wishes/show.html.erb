@@ -39,12 +39,7 @@
           </td>
           <% if @wish.url.present? %>
             <td>
-              <div class="thumbnail">
-                <% embedly = display(@wish.url) %>
-                <%= link_to embedly[:url], :target => '_blank' do %>
-                    <%= image_tag embedly[:thumbnail_url] %>
-                <% end %>
-              </div>
+              <p><%= link_to @wish.url %></p>
             </td>
           <% end %>
           <% if @wish.price.present? %>
