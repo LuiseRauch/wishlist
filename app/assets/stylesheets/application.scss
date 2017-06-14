@@ -80,7 +80,7 @@ body {
 
 /* read only stars */
 .fa-heart, .fa-heart-o, {
-  color: #ff839c;
+  color: #ff5066;
   font-size: 1.4em;
   font-family: FontAwesome;
   display: inline-block;
@@ -113,9 +113,9 @@ body {
 
 .rating > input:checked ~ label, /* show gold star when clicked */
 .rating:not(:checked) > label:hover, /* hover current star */
-.rating:not(:checked) > label:hover ~ label { color: #ff839c;  } /* hover previous stars in list */
+.rating:not(:checked) > label:hover ~ label { color: #ff5066;  } /* hover previous stars in list */
 
 .rating > input:checked + label:hover, /* hover current star when changing rating */
 .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
-.rating > input:checked ~ label:hover ~ label { color: #ff9cb1;  }
+.rating > input:checked ~ label:hover ~ label { color: #ff8492;  }
