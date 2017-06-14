@@ -1,10 +1,8 @@
-require 'embedly'
 require 'json'
 
 class WishesController < ApplicationController
   def show
     @wish = Wish.friendly.find(params[:id])
-    EmbedlyHelper
   end
 
   def new
@@ -66,7 +64,7 @@ class WishesController < ApplicationController
   private
 
   def wish_params
-    params.require(:wish).permit(:title, :body, :url, :price)
+    params.require(:wish).permit(:title, :body, :url, :price, :rating)
   end
 
 end

@@ -2,13 +2,14 @@
 <html>
   <head>
     <title>Wishlist</title>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body ng-app="wishlist">
-
+  <body>
 
     <div id="wrap">
       <div class="container">
@@ -59,7 +60,5 @@
         </div>
       </div>
     </div>
-
-    <%= javascript_include_tag 'application' %>
   </body>
 </html>
