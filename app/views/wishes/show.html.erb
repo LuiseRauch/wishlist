@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-xs-12">
     <table class="table table-bordered table-responsive">
 
       <thead>
@@ -9,12 +9,19 @@
             submitted <%= time_ago_in_words(@wish.created_at) %> ago by <%= @wish.user.username %>
           </small>
           <div class="pull-right">
-            <%= link_to "Edit", edit_list_wish_path(@wish.list, @wish), class: 'btn btn-info btn-sm' %>
-            <%= link_to "Delete Wish", [@wish.list, @wish], method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure you want to delete this wish?' } %>
-            <%= link_to @wish.list.name, request.referer, class: 'btn btn-success btn-sm'%>
+            <% if policy(@wish).edit? %>
+              <%= link_to "Edit", edit_list_wish_path(@wish.list, @wish), class: 'btn btn-info btn-sm' %>
+            <% end %>
+            <% if policy(@wish).destroy? %>
+              <%= link_to "Delete Wish", [@wish.list, @wish], method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure you want to delete this wish?' } %>
+            <% end %>
+            <%= link_to @wish.list.name, list_path(@wish.list), class: 'btn btn-success btn-sm'%>
           </div>
         </caption>
         <tr>
+          <th>
+            rating
+          </th>
           <th>
             description
           </th>
@@ -34,14 +41,23 @@
 
       <tbody>
         <tr>
+          <td class="star-table">
+            <% num_stars(@wish.rating)[:full].times do %>
+            <i class="fa fa-heart"></i>
+            <% end %>
+            <% num_stars(@wish.rating)[:empty].times do %>
+              <i class="fa fa-heart-o"></i>
+            <% end %>
+          </td>
+          <% if @wish.url.present? %>
+            <td class="link-table-cell">
+                <% object = MetaInspector.new(@wish.url) %>
+                <%= link_to(image_tag(object.images.best, class: "img-responsive col-xs-12"), @wish.url) %>
+            </td>
+          <% end %>
           <td>
             <p><%= @wish.body %></p>
           </td>
-          <% if @wish.url.present? %>
-            <td>
-              <p><%= link_to @wish.url %></p>
-            </td>
-          <% end %>
           <% if @wish.price.present? %>
             <td>
               <p><%= @wish.price %></p>
@@ -49,7 +65,6 @@
           <% end %>
         </tr>
       </tbody>
-
      </table>
   </div>
 </div>

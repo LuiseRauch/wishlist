@@ -51,21 +51,6 @@ body {
 .nav {
   margin-top: 5px;
 }
-.thumbnail {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  max-width: 100%;
-  margin: 10px 0;
-  overflow: hidden;
-}
-.image_tag {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
 
 .form-inline .field_with_errors {
   display: inline-block;
@@ -82,3 +67,55 @@ body {
 .text-muted {
     color: #636c72!important;
 }
+
+.star-table-cell {
+    min-width: 133px;
+}
+
+.link-table-cell {
+    max-width: 400px;
+}
+
+/* css for ratings*/
+
+/* read only stars */
+.fa-heart, .fa-heart-o, {
+  color: #ff839c;
+  font-size: 1.4em;
+  font-family: FontAwesome;
+  display: inline-block;
+}
+
+/****** Style Star Rating Widget *****/
+
+.rating {
+  float: left;
+}
+
+.rating > input { display: none; }
+.rating > label:before {
+  margin: 5px;
+  font-size: 1.4em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f004";
+}
+
+.rating > label {
+  color: #ddd;
+  float: right;
+  width:1.9em;
+  overflow:hidden;
+  white-space:nowrap;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #ff839c;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #ff9cb1;  }

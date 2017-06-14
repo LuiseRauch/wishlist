@@ -1,4 +1,3 @@
-require 'embedly'
 require 'json'
 
 class ListsController < ApplicationController

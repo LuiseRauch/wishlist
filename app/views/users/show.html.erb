@@ -14,12 +14,8 @@
         <% wishes.each do |wish| %>
         <div class="col-md-3">
           <strong><%= wish.title %></strong><br />
-          <div class="thumbnail">
-            <% embedly = display(wish.url) %>
-            <%= link_to embedly[:url], :target => '_blank' do %>
-                <%= image_tag embedly[:thumbnail_url] %>
-            <% end %>
-          </div>
+          <% object = MetaInspector.new(wish.url) %>
+          <%= image_tag(object.images.best, class: "img-responsive col-xs-12") %>
         </div>
         <% end %>
       </div>

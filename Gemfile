@@ -44,7 +44,7 @@ gem 'devise'
 
 gem 'pundit'
 
-gem 'embedly'
+gem 'metainspector'
 
 group :production do
   gem 'rails_12factor'

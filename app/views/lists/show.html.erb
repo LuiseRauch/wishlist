@@ -17,11 +17,11 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-xs-12">
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th colspan="3">
+          <th colspan="4">
             <h4 class="media-heading">My Wishes for <%= @list.name %></h4>
           </th>
         </tr>
@@ -30,8 +30,13 @@
 
         <% if @list.wishes.each do |wish| %>
           <tr>
-            <td>
-              <div id="star"></div>
+            <td class="star-table-cell">
+              <% num_stars(wish.rating)[:full].times do %>
+              <i class="fa fa-heart"></i>
+              <% end %>
+              <% num_stars(wish.rating)[:empty].times do %>
+                <i class="fa fa-heart-o"></i>
+              <% end %>
             </td>
             <td>
               <h4 class="media-heading">
@@ -43,10 +48,14 @@
               </small>
             </td>
             <% if wish.url.present? %>
-              <td>
-                <p><%= wish.url %></p>
+              <td class="link-table-cell">
+                <% object = MetaInspector.new(wish.url, :allow_redirections => false) %>
+                <%= link_to(image_tag(object.images.best, class: "img-responsive col-xs-12"), wish.url) %>
               </td>
             <% end %>
+            <td>
+              <p><%= wish.body %></p>
+            </td>
           </tr>
         <% end.empty? %>
           <tr>
