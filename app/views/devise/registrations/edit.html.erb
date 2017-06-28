@@ -1,6 +1,6 @@
 <br>
 <div class="well">
-  <h2>Edit <%= resource_name.to_s.humanize %></h2>
+  <h2>Edit <%= @current_user.username %>'s profile</h2>
   <%= link_to "Back", :back %>
 </div>
 <div class="col-lg-12 well">
@@ -17,7 +17,7 @@
           <%= f.text_field :username, placeholder: "Enter Username Here..", class: "form-control" %>
         </div>
         <div class="form-group">
-          <%= f.label :email %><br />
+          <%= f.label :email%>
           <%= f.email_field :email, placeholder: "Enter Email-Address Here..", class: "form-control" %>
         </div>
 				<div class="row">
@@ -55,7 +55,10 @@
 
         <div class="form-group">
           <%= f.label :skype_handle %><br />
-          <%= f.text_field :skype_handle, placeholder: "Enter Skype Handle Here..", class: "form-control" %>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-skype" aria-hidden="true"></i></span>
+            <%= f.text_field :skype_handle, placeholder: "Enter Skype Handle Here..", class: "form-control" %>
+          </div>
         </div>
 
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

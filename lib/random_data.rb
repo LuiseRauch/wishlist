@@ -43,4 +43,8 @@ module RandomData
     price = rand(5..200)
     price.to_s
   end
+
+  def self.random_rating
+    rating = rand(1..5)
+  end
 end

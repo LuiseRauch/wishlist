@@ -6,5 +6,6 @@ FactoryGirl.define do
     body RandomData.random_paragraph
     url RandomData.random_url
     price RandomData.random_number
+    rating RandomData.random_rating
   end
 end

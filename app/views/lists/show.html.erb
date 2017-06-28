@@ -1,6 +1,13 @@
+
 <br>
 <div class="well">
-  <h1><%= @list.name %></h1>
+  <h1><%= @list.name %>
+    <% if @list.public %>
+      <span class="glyphicon glyphicon-eye-open"></span>
+    <% else %>
+      <span class="glyphicon glyphicon-eye-close"></span>
+    <% end %>
+  </h1>
   <p class="lead"><%= @list.description %></p>
   <div>
     <% if policy(@list).edit? %>
@@ -27,7 +34,6 @@
         </tr>
       </thead>
       <tbody>
-
         <% if @list.wishes.each do |wish| %>
           <tr>
             <td class="star-table-cell">
@@ -64,7 +70,6 @@
             </td>
           </tr>
         <% end %>
-
       </tbody>
     </table>
   </div>

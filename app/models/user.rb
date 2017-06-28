@@ -29,4 +29,8 @@ class User < ApplicationRecord
     end
   end
 
+  extend FriendlyId
+  friendly_id :username, use: [:slugged, :history]
+
+
 end

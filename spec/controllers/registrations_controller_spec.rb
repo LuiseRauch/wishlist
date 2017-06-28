@@ -68,21 +68,21 @@ RSpec.describe Devise::RegistrationsController, type: :controller do
     end
   end
 
-#   describe "not signed in" do
-#     let(:factory_user) { create(:user) }
-#
-#     before do
-#       @request.env["devise.mapping"] = Devise.mappings[:user]
-#       post :create, user: new_user_attributes
-#     end
-#
-#     it "returns http success" do
-#       get :new, {id: factory_user.id}
-#       expect(response).to have_http_status(:success)
-#     end
-#     it "renders the #new view" do
-#       get :new, {id: factory_user.id}
-#       expect(response).to render_template :new
-#     end
-#   end
+  # describe "not signed in" do
+  #   let(:factory_user) { create(:user) }
+  #
+  #   before do
+  #     @request.env["devise.mapping"] = Devise.mappings[:user]
+  #     post :create, user: new_user_attributes
+  #   end
+  #
+  #   it "returns http success" do
+  #     get :new, {id: factory_user.id}
+  #     expect(response).to have_http_status(:success)
+  #   end
+  #   it "renders the #new view" do
+  #     get :new, {id: factory_user.id}
+  #     expect(response).to render_template :new
+  #   end
+  # end
 end

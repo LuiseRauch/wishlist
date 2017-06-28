@@ -1,8 +1,105 @@
 require 'rails_helper'
+include RandomData
 
 RSpec.describe ListsController, type: :controller do
   let (:my_user) { create(:user) }
   let (:my_list) { create(:list, user: my_user) }
+  let (:my_private_list) { create(:list, user: my_user, public: false) }
+
+  # context "guest" do
+  # end
+
+
+  context "logged in user doing CRUD on a list they do NOT own" do
+    before do
+      other_user = User.create!(username: "Test User", email: "test@example.com", password: "helloworld", password_confirmation: "helloworld")
+      sign_in other_user
+    end
+
+    describe "GET #index" do
+      it "returns http success" do
+        get :index
+        expect(response).to have_http_status(:success)
+      end
+      it "assigns List.all to list" do
+        get :index
+        expect(assigns(:lists)).to eq([my_list])
+      end
+      it "does not include private lists in @lists" do
+        get :index
+        expect(assigns(:public_lists)).not_to include(my_private_list)
+      end
+    end
+
+    describe "GET show" do
+      it "returns http success" do
+        get :show, {id: my_list.id}
+        expect(response).to have_http_status(:success)
+      end
+      it "renders the #show view" do
+        get :show, {id: my_list.id}
+        expect(response).to render_template :show
+      end
+      it "assigns my_list to @list" do
+        get :show, {id: my_list.id}
+        expect(assigns(:list)).to eq(my_list)
+      end
+    end
+
+    describe "GET new" do
+      it "returns http success" do
+        get :new
+        expect(response).to have_http_status(:success)
+      end
+      it "renders the #new view" do
+        get :new
+        expect(response).to render_template :new
+      end
+      it "instantiates @list" do
+        get :new
+        expect(assigns(:list)).not_to be_nil
+      end
+    end
+
+    describe "POST create" do
+      it "increases the number of List by 1" do
+        expect{ post :create, list: {name: RandomData.random_sentence, description: RandomData.random_paragraph}}.to change(List,:count).by(1)
+      end
+      it "assigns the new list to @list" do
+        post :create, {list: {name: RandomData.random_sentence, description: RandomData.random_paragraph}}
+        expect(assigns(:list)).to eq List.last
+      end
+      it "redirects to the new list" do
+        post :create, {list: {name: RandomData.random_sentence, description: RandomData.random_paragraph}}
+        expect(response).to redirect_to List.last
+      end
+    end
+
+    describe "GET edit" do
+      it "returns http redirect" do
+        get :edit, id: my_list.id
+        expect(response).to redirect_to(lists_path)
+      end
+    end
+
+    describe "PUT update" do
+      it "returns http redirect" do
+        new_name = RandomData.random_sentence
+        new_description = RandomData.random_paragraph
+
+        put :update, id: my_list.id, list: { name: new_name, description: new_description }
+        expect(response).to redirect_to(lists_path)
+      end
+    end
+
+    describe "DELETE destroy" do
+      it "returns http redirect" do
+        delete :destroy, id: my_list.id
+        expect(response).to redirect_to(lists_path)
+      end
+    end
+  end
+
 
   context "logged in user doing CRUD on a list they own" do
     before do
@@ -17,6 +114,10 @@ RSpec.describe ListsController, type: :controller do
       it "assigns my_list to @list" do
         get :index
         expect(assigns(:lists)).to eq([my_list])
+      end
+      it "does not include private lists in @lists" do
+        get :index
+        expect(assigns(:public_lists)).not_to include(my_private_list)
       end
     end
 

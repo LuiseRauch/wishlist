@@ -1,3 +1,2 @@
-
 class WishPolicy < ApplicationPolicy
 end

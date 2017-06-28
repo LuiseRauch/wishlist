@@ -1,10 +1,45 @@
 <br>
 <div class="jumbotron">
 
-<h1>Welcome to Wishlist</h1>
-<p>This is the home page for Wishlist - an Adrian Davies idea.</p>
+  <h1>Welcome to Wishlist</h1>
+  <p>
+    This is the home page for Wishlist - an Adrian Davies idea.<br>
+    Save and share your wishes!
+  </p>
+  <p>
+    <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary' %> today!
+  </p>
+</div>
 
-<p>
-  <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary' %> today!
-</p>
+<div class="col-md-9">
+  <%= image_tag("wl_ny.png", alt: "Responsive image", class: "img-responsive") %>
+</div>
+
+<div class="col-md-3">
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th colspan="1">
+          <h4 class="media-heading">latest public wishlists</h4>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @public_lists.limit(6).each do |list| %>
+        <tr>
+          <td>
+            <h5>
+              <%= list.name %>
+              <% if list.wishes.count > 1 %>
+                (<%= list.wishes.count %> Wishes)
+              <% else %>
+                (<%= list.wishes.count %> Wish)
+              <% end %>
+            </h5>
+            <small>created <%= time_ago_in_words(list.created_at) %> ago</small>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>

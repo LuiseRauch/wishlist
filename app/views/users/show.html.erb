@@ -1,23 +1,37 @@
 <br>
 <div class="well text-center">
-    <h2>Hi <%= @current_user.username %>!</h2>
-    <%= link_to 'Edit profile', edit_user_registration_path(@user) %>
+    <h1>Hi <%= @current_user.username %>!</h1>
+    <% if policy(List.new).create?%>
+    <%= link_to "New Wishlist", new_list_path, class: 'btn btn-success btn-sm' %>
+    <% end %>
 </div>
 
-
-
 <div class="row text-center">
-  <h2>My Wishes</h2>
-    <% @user_wishes_lists.each do |list, wishes| %>
-      <div class="col-md-12">
-        <strong><%= link_to list.name, list %></strong><br />
-        <% wishes.each do |wish| %>
-        <div class="col-md-3">
-          <strong><%= wish.title %></strong><br />
-          <% object = MetaInspector.new(wish.url) %>
-          <%= image_tag(object.images.best, class: "img-responsive col-xs-12") %>
-        </div>
+  <div class="col-md-12">
+    <% if @user_lists.each do |list| %>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <h4><%= link_to list.name, list %>
+          <% if list.public %>
+            <span class="glyphicon glyphicon-eye-open"></span>
+          <% else %>
+            <span class="glyphicon glyphicon-eye-close"></span>
+          <% end %>
+        </h4>
+        <small><%= list.description %></small><br>
+        <% if list.wishes.count > 1 %>
+          <small><%= list.wishes.count %> Wishes</small>
+        <% else %>
+          <small><%= list.wishes.count %> Wish</small>
         <% end %>
-      </div>
+      </li>
+    </ul>
+    <% end.empty? %>
+      <tr>
+        <td colspan="2">
+          <h4 class="text-center">No Wishes yet!</h4>
+        </td>
+      </tr>
     <% end %>
+  </div>
 </div>

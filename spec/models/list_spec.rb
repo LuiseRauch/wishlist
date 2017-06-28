@@ -1,4 +1,5 @@
 require 'rails_helper'
+include RandomData
 
 RSpec.describe List, type: :model do
   let(:user) { create(:user) }
