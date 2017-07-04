@@ -8,11 +8,12 @@
   </div>
 </div>
 
-<div class="well text-center">
-  <div class="col-md-12">
-
+<div class="row text-center">
+  <div class="col-xs-12">
+    <%= render partial: '/searches/search_form' %>
   </div>
 </div>
+<br>
 
 <% @public_lists.each do |list| %>
   <div class="row text-center">
@@ -24,8 +25,10 @@
           <small><%= list.description %></small><br>
           <% if list.wishes.count > 1 %>
             <small><%= list.wishes.count %> Wishes</small>
-          <% else %>
+          <% elsif list.wishes.count == 1 %>
             <small><%= list.wishes.count %> Wish</small>
+          <% else %>
+            <small> No Wishes yet </small>
           <% end %>
         </li>
       </ul>

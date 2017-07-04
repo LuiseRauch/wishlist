@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  post "searches", to: "searches#create"
+  get "autocomplete", to: "searches#autocomplete"
 
-  resources :users, only: [:show]
+  resources :users, only: [:index, :show]
 
   devise_for :users, :path => 'devise'
 
@@ -8,9 +10,9 @@ Rails.application.routes.draw do
     resources :wishes, except: [:index]
   end
 
-  get 'about' => 'welcome#about'
+  get 'about', to: 'welcome#about'
 
-  get 'contact' => 'welcome#contact'
+  get 'contact', to: 'welcome#contact'
 
   root 'welcome#index'
 

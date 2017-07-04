@@ -46,6 +46,10 @@ gem 'pundit'
 
 gem 'metainspector'
 
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+gem 'lodash-rails'
+
 group :production do
   gem 'rails_12factor'
 end

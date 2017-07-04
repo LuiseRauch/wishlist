@@ -32,8 +32,10 @@
               <%= list.name %>
               <% if list.wishes.count > 1 %>
                 (<%= list.wishes.count %> Wishes)
-              <% else %>
+              <% elsif list.wishes.count == 1 %>
                 (<%= list.wishes.count %> Wish)
+              <% else %>
+                (No Wishes yet)
               <% end %>
             </h5>
             <small>created <%= time_ago_in_words(list.created_at) %> ago</small>

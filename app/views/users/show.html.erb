@@ -1,37 +1,32 @@
 <br>
 <div class="well text-center">
-    <h1>Hi <%= @current_user.username %>!</h1>
-    <% if policy(List.new).create?%>
-    <%= link_to "New Wishlist", new_list_path, class: 'btn btn-success btn-sm' %>
-    <% end %>
+    <h4>Here are <%= @user.username %>'s public Wishlists!</h4>
 </div>
 
-<div class="row text-center">
-  <div class="col-md-12">
-    <% if @user_lists.each do |list| %>
-    <ul class="list-group">
-      <li class="list-group-item">
-        <h4><%= link_to list.name, list %>
-          <% if list.public %>
-            <span class="glyphicon glyphicon-eye-open"></span>
+<% if @user_public_lists.each do |list| %>
+
+  <div class="row text-center">
+    <div class="col-md-12">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <h4><%= link_to list.name, list %></h4>
+          <small> by <%= list.user.username %></small><br>
+          <small><%= list.description %></small><br>
+          <% if list.wishes.count > 1 %>
+            <small><%= list.wishes.count %> Wishes</small>
+          <% elsif list.wishes.count == 1 %>
+            <small><%= list.wishes.count %> Wish</small>
           <% else %>
-            <span class="glyphicon glyphicon-eye-close"></span>
+            <small> No Wishes yet </small>
           <% end %>
-        </h4>
-        <small><%= list.description %></small><br>
-        <% if list.wishes.count > 1 %>
-          <small><%= list.wishes.count %> Wishes</small>
-        <% else %>
-          <small><%= list.wishes.count %> Wish</small>
-        <% end %>
-      </li>
-    </ul>
-    <% end.empty? %>
-      <tr>
-        <td colspan="2">
-          <h4 class="text-center">No Wishes yet!</h4>
-        </td>
-      </tr>
-    <% end %>
+        </li>
+      </ul>
+    </div>
   </div>
-</div>
+<% end.empty? %>
+  <tr>
+    <td colspan="2">
+      <h4 class="text-center">No Wishlists yet!</h4>
+    </td>
+  </tr>
+<% end %>

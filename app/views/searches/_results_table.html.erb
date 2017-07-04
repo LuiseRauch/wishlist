@@ -1,0 +1,23 @@
+<%- if results.present? %>
+<br>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th class="text-center">Search results</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%- @results.each do |result| %>
+            <tr>
+              <td>
+                <%= link_to result[:hint], result[:record_type] == "List" ? list_path(result[:record_id]) : user_path(result[:record_id]) %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>

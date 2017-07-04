@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include Searchable
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -15,6 +16,9 @@ class User < ApplicationRecord
           uniqueness: { case_sensitive: false },
           length: { minimum: 3, maximum: 254 }
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
@@ -33,4 +37,7 @@ class User < ApplicationRecord
   friendly_id :username, use: [:slugged, :history]
 
 
+  def as_indexed_json(options={})
+    self.as_json( only: [ :username, :email, :first_name, :last_name, :city ], methods: :full_name )
+  end
 end
