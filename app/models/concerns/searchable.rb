@@ -4,7 +4,12 @@ module Searchable
   extend ActiveSupport::Concern
 
   included do
+    #This will extend the model with functionality related to Elasticsearch
     include Elasticsearch::Model
+
+    #automatically update the index whenever the record changes
+    include Elasticsearch::Model::Callbacks
+
 
     settings analysis: {
       filter: {
