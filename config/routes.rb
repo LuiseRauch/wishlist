@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   post "searches", to: "searches#create"
   get "autocomplete", to: "searches#autocomplete"
 
-  resources :users, only: [:index, :show]
+  resources :users, only: [:show]
+
+  resources :users do
+    get "lists"
+  end
 
   devise_for :users, :path => 'devise'
 

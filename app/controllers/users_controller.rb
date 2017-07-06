@@ -11,4 +11,9 @@ class UsersController < ApplicationController
     @user_lists = @user.lists
     @user_public_lists = @user_lists.where(public: true)
   end
+
+  def lists
+    @user = current_user
+    @user_lists = @user.lists
+  end
 end
