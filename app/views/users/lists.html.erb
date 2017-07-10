@@ -21,8 +21,10 @@
         <small><%= list.description %></small><br>
         <% if list.wishes.count > 1 %>
           <small><%= list.wishes.count %> Wishes</small>
-        <% else %>
+        <% elsif list.wishes.count == 1 %>
           <small><%= list.wishes.count %> Wish</small>
+        <% else %>
+          <small> No Wishes yet </small>
         <% end %>
       </li>
     </ul>

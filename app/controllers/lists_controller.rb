@@ -2,7 +2,6 @@ require 'json'
 
 class ListsController < ApplicationController
   def index
-    @lists = List.all
     @public_lists = List.where(public: true)
   end
 

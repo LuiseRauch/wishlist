@@ -1,0 +1,48 @@
+<%= form_for [list, wish] do |f| %>
+
+<% if wish.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(wish.errors.count, "error") %>.</h4>
+      <ul>
+        <% wish.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form_group_tag(wish.errors[:title]) do %>
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control', placeholder: "Enter wish title" %>
+  <% end %>
+  <%= form_group_tag(wish.errors[:url]) do %>
+    <%= f.label :url %>
+    <%= f.url_field :url, class: 'form-control', placeholder: "Enter wish url" %>
+  <% end %>
+  <%= form_group_tag(wish.errors[:body]) do %>
+    <%= f.label :body %>
+    <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wish body" %>
+  <% end %>
+  <%= form_group_tag(wish.errors[:price]) do %>
+    <%= f.label :price %>
+    <%= f.text_field :price, class: 'form-control', placeholder: "Enter price" %>
+  <% end %>
+  <%= form_group_tag(wish.errors[:rating]) do %>
+  <p><b>Rating</b> - how much do you need this?</p>
+    <div class="rating">
+        <%= f.radio_button(:rating, "5") %><%= f.label(:rating.to_s + "_5", "Musthave!") %>
+        <%= f.radio_button(:rating, "4") %><%= f.label(:rating.to_s + "_4", "Really want it!") %>
+        <%= f.radio_button(:rating, "3") %><%= f.label(:rating.to_s + "_3", "Would be awesome!") %>
+        <%= f.radio_button(:rating, "2") %><%= f.label(:rating.to_s + "_2", "Would be great.") %>
+        <%= f.radio_button(:rating, "1") %><%= f.label(:rating.to_s + "_1", "Nice to have.") %>
+    </div>
+  <% end %>
+  <br><br>
+  <%= form_group_tag(wish.errors[:list_id]) do %>
+    <p><b>Lists</b> - do you want to move your wish to another Wishlist?</p>
+    <%= f.collection_select :list_id, List.all.where(user: current_user), :id, :name, prompt: true %>
+  <% end %>
+  <br>
+  <div id="save-form" class="form-group">
+    <%= f.submit "Save", class: 'btn btn-success' %>
+  </div>
+<% end %>

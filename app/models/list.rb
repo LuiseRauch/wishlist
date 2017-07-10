@@ -1,6 +1,5 @@
 class List < ApplicationRecord
   include Searchable
-
   belongs_to :user
   has_many :wishes, dependent: :destroy
 

@@ -52,7 +52,11 @@
           <% if @wish.url.present? %>
             <td class="link-table-cell">
                 <% object = MetaInspector.new(@wish.url) %>
-                <%= link_to(image_tag(object.images.best, class: "img-responsive col-xs-12"), @wish.url) %>
+                <% if object.images.best == nil %>
+                  <%= link_to(@wish.url, @wish.url) %>
+                <% else %>
+                  <%= link_to(image_tag(object.images.best, class: "img-responsive col-xs-12"), @wish.url) %>
+                <% end %>
             </td>
           <% end %>
           <td>
