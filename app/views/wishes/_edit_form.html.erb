@@ -24,10 +24,14 @@
   <% end %>
   <%= form_group_tag(wish.errors[:price]) do %>
     <%= f.label :price %>
-    <%= f.text_field :price, class: 'form-control', placeholder: "Enter price" %>
+    <div class="form-inline">
+      <%= f.text_field :price_cents, placeholder: "Enter price", class: 'form-control'%>
+      <%= f.select :currency, collection: Wish.all_currencies(Money::Currency.table), class: 'form-control' %>
+    </div>
   <% end %>
   <%= form_group_tag(wish.errors[:rating]) do %>
-  <p><b>Rating</b> - how much do you need this?</p>
+
+    <p><b>Rating</b> - how much do you need this?</p>
     <div class="rating">
         <%= f.radio_button(:rating, "5") %><%= f.label(:rating.to_s + "_5", "Musthave!") %>
         <%= f.radio_button(:rating, "4") %><%= f.label(:rating.to_s + "_4", "Really want it!") %>

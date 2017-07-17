@@ -64,7 +64,7 @@
           </td>
           <% if @wish.price.present? %>
             <td>
-              <p><%= @wish.price %></p>
+              <p> <%= @wish.price_cents %> <%= @wish.currency %></p>
             </td>
           <% end %>
         </tr>

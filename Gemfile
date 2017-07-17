@@ -50,6 +50,8 @@ gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem 'lodash-rails'
 
+gem 'money-rails', '~>1'
+
 group :production do
   gem 'rails_12factor'
 end
