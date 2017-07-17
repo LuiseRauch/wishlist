@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Wishlist</title>
+    <title>Wunschlist</title>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,8 +16,8 @@
         <ul class="nav nav-tabs">
           <% if user_signed_in? %>
             <% if policy(List.new).create?%>
-              <li><%= link_to "All Wishlists", lists_path %></li>
-              <li><%= link_to "My Wishlists", user_lists_path(current_user) %></li>
+              <li><%= link_to "All Wunschlists", lists_path %></li>
+              <li><%= link_to "My Wunschlists", user_lists_path(current_user) %></li>
             <% end %>
           <% else %>
           <li><%= link_to "Home", root_path %></li>

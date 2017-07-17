@@ -2,7 +2,7 @@
 <div class="well text-center">
     <h1>Hi <%= @current_user.username %>!</h1>
     <% if policy(List.new).create?%>
-    <%= link_to "New Wishlist", new_list_path, class: 'btn btn-success btn-sm' %>
+    <%= link_to "New Wunschlist", new_list_path, class: 'btn btn-success btn-sm' %>
     <% end %>
 </div>
 
