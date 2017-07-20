@@ -14,20 +14,20 @@
 			<div class="col-sm-12">
         <div class="form-group">
           <%= f.label :username %><br />
-          <%= f.text_field :username, placeholder: "Enter Username Here..", class: "form-control" %>
+          <%= f.text_field :username, placeholder: "Username", class: "form-control" %>
         </div>
         <div class="form-group">
           <%= f.label :email%>
-          <%= f.email_field :email, placeholder: "Enter Email-Address Here..", class: "form-control" %>
+          <%= f.email_field :email, placeholder: "Email address", class: "form-control" %>
         </div>
 				<div class="row">
 					<div class="col-sm-6 form-group">
             <%= f.label :first_name %><br />
-            <%= f.text_field :first_name, placeholder: "Enter First Name Here..", class: "form-control" %>
+            <%= f.text_field :first_name, placeholder: "First Name", class: "form-control" %>
 					</div>
 					<div class="col-sm-6 form-group">
             <%= f.label :last_name %><br />
-            <%= f.text_field :last_name, placeholder: "Enter Last Name Here..", class: "form-control"  %>
+            <%= f.text_field :last_name, placeholder: "Last Name", class: "form-control"  %>
 					</div>
 				</div>
         <div class="form-group">
@@ -36,12 +36,12 @@
         </div>
 				<div class="form-group">
           <%= f.label :address %><br />
-          <%= f.text_area :address, placeholder: "Enter Address Here..", rows:"2", class: "form-control" %>
+          <%= f.text_area :address, placeholder: "Address", rows:"2", class: "form-control" %>
 				</div>
 				<div class="row">
 					<div class="col-sm-6 form-group">
             <%= f.label :city %><br />
-            <%= f.text_field :city, placeholder: "Enter City Name Here..", class: "form-control" %>
+            <%= f.text_field :city, placeholder: "City", class: "form-control" %>
 					</div>
 					<div class="col-sm-6 form-group">
             <%= f.label :country %><br />
@@ -50,14 +50,14 @@
 				</div>
   			<div class="form-group">
           <%= f.label :phone_number %><br />
-          <%= f.telephone_field :phone_number, placeholder: "Enter Phone Number Here..", class: "form-control" %>
+          <%= f.telephone_field :phone_number, placeholder: "Phone number", class: "form-control" %>
   			</div>
 
         <div class="form-group">
           <%= f.label :skype_handle %><br />
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-skype" aria-hidden="true"></i></span>
-            <%= f.text_field :skype_handle, placeholder: "Enter Skype Handle Here..", class: "form-control" %>
+            <%= f.text_field :skype_handle, placeholder: "Skype handle", class: "form-control" %>
           </div>
         </div>
 
@@ -67,7 +67,7 @@
 
         <div class="form-group">
           <%= f.label :password %> <i class="form-text text-muted">(leave blank if you don't want to change it)</i><br />
-          <%= f.password_field :password, placeholder: "Enter Password Here..", autocomplete: "off", class: "form-control" %>
+          <%= f.password_field :password, placeholder: "Password", autocomplete: "off", class: "form-control" %>
           <% if @minimum_password_length %>
             <em class="form-text text-muted" ><%= @minimum_password_length %> characters minimum</em>
           <% end %>
@@ -75,12 +75,12 @@
 
         <div class="form-group">
           <%= f.label :password_confirmation %><br />
-          <%= f.password_field :password_confirmation, placeholder: "Enter Password Confirmation Here..", autocomplete: "off", class: "form-control" %>
+          <%= f.password_field :password_confirmation, placeholder: "Password confirmation", autocomplete: "off", class: "form-control" %>
         </div>
 
         <div class="form-group">
-          <%= f.label :current_password %> <i class="form-text text-muted">(we need your current password to confirm your changes)</i><br />
-          <%= f.password_field :current_password, placeholder: "Enter Current Password Here..", autocomplete: "off", class: "form-control" %>
+          <%= f.label :current_password %> <i class="form-text">(we need your current password to confirm your changes)</i><br />
+          <%= f.password_field :current_password, placeholder: "Current password", autocomplete: "off", class: "form-control" %>
         </div>
 
         <div class="form-group">
