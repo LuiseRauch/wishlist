@@ -54,11 +54,11 @@
             </td>
             <% if wish.url.present? %>
               <td class="link-table-cell">
-                <% object = display(wish.url) %>
-                <% if object.images.best == nil %>
+                <% img_url = display(wish.url) %>
+                <% if img_url == nil %>
                   <%= link_to(wish.url, wish.url) %>
                 <% else %>
-                  <%= link_to(image_tag(object.images.best, class: "img-responsive col-xs-12"), wish.url) %>
+                  <%= link_to(image_tag(img_url, class: "img-responsive col-xs-12"), wish.url) %>
                 <% end %>
               </td>
             <% end %>
