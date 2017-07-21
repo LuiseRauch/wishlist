@@ -51,7 +51,7 @@
           </td>
           <% if @wish.url.present? %>
             <td class="link-table-cell">
-                <% object = MetaInspector.new(@wish.url) %>
+                <% object = display(@wish.url) %>
                 <% if object.images.best == nil %>
                   <%= link_to(@wish.url, @wish.url) %>
                 <% else %>
