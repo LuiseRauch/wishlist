@@ -38,7 +38,7 @@ module UrlHelper
   end
 
   def is_amazon_url(url)
-    /(?:www.)?ama?zo?n.(?:com|ca|co.uk|co.jp|de|fr)/.match?(url)
+    /(?:www.)?ama?zo?n.(?:com|ca|cn|es|mx|in|it|co.uk|co.jp|de|fr)/.match?(url)
   end
 
   def get_asin(url)
