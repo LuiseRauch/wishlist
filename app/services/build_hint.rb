@@ -8,7 +8,6 @@ class BuildHint < Struct.new(:record)
   end
 
   private
-
   def result_builder
     "#{record.class}ResultBuilder".constantize.new(record)
   end

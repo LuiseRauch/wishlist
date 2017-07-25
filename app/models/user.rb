@@ -38,6 +38,6 @@ class User < ApplicationRecord
 
 
   def as_indexed_json(options={})
-    self.as_json( only: [ :username, :email, :first_name, :last_name, :city ], methods: :full_name )
+    self.as_json( only: [ :username, :email, :city ], methods: :full_name )
   end
 end

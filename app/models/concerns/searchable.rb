@@ -7,10 +7,6 @@ module Searchable
     #This will extend the model with functionality related to Elasticsearch
     include Elasticsearch::Model
 
-    #automatically update the index whenever the record changes
-    include Elasticsearch::Model::Callbacks
-
-
     settings analysis: {
       filter: {
         ngram_filter: {
@@ -47,5 +43,6 @@ module Searchable
     after_commit do
       __elasticsearch__.index_document
     end
+
   end
 end

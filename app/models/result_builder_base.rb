@@ -4,6 +4,5 @@ class ResultBuilderBase
   end
 
   private
-
   attr_reader :record
 end
