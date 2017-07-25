@@ -1,5 +1,7 @@
 require 'rails_helper'
+require "money-rails/test_helpers"
 include RandomData
+include MoneyRails::TestHelpers
 
 RSpec.describe Wish, type: :model do
   let(:user) { create(:user) }
@@ -25,5 +27,9 @@ RSpec.describe Wish, type: :model do
     it "has title, body, url, price and rating attributes" do
       expect(wish).to have_attributes(title: wish.title, body: wish.body, url: wish.url, price: wish.price, rating: wish.rating)
     end
+  end
+
+  describe "money" do
+    it { is_expected.to monetize(:price_cents) }
   end
 end

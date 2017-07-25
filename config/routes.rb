@@ -8,11 +8,19 @@ Rails.application.routes.draw do
     get "lists"
   end
 
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+
   devise_for :users, :path => 'devise'
 
   resources :lists do
     resources :wishes, except: [:index]
   end
+  
+  resources :relationships,       only: [:create, :destroy]
 
   get 'about', to: 'welcome#about'
 

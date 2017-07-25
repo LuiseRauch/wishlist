@@ -1,5 +1,7 @@
 require 'rails_helper'
+require "money-rails/test_helpers"
 include RandomData
+include MoneyRails::TestHelpers
 
 RSpec.describe WishesController, type: :controller do
   let (:my_user) { create(:user) }
@@ -10,7 +12,7 @@ RSpec.describe WishesController, type: :controller do
   # todo
   # context "guest" do
   # end
-  
+
   context "logged in user doing CRUD on a wish they do NOT own" do
     before do
       other_user = User.create!(username: "Test User", email: "test@example.com", password: "helloworld", password_confirmation: "helloworld")
@@ -36,16 +38,16 @@ RSpec.describe WishesController, type: :controller do
 
     describe "POST create" do
       it "increases the number of Wish by 1" do
-        expect{post :create, list_id: my_list.id, wish: {title: RandomData.random_sentence, body: RandomData.random_paragraph, url: RandomData.random_url, price: RandomData.random_number, rating: RandomData.random_rating}}.to change(Wish,:count).by(1)
+        expect{post :create, list_id: my_list.id, wish: {title: RandomData.random_sentence, body: RandomData.random_paragraph, url: RandomData.random_url, price_cents: RandomData.random_number, rating: RandomData.random_rating}}.to change(Wish,:count).by(1)
       end
 
       it "assigns the new wish to @wish" do
-        post :create, list_id: my_list.id, wish: {title: RandomData.random_sentence, body: RandomData.random_paragraph, url: RandomData.random_url, price: RandomData.random_number, rating: RandomData.random_rating}
+        post :create, list_id: my_list.id, wish: {title: RandomData.random_sentence, body: RandomData.random_paragraph, url: RandomData.random_url, price_cents: RandomData.random_number, rating: RandomData.random_rating}
         expect(assigns(:wish)).to eq Wish.last
       end
 
       it "redirects to the list" do
-        post :create, list_id: my_list.id, wish: {title: RandomData.random_sentence, body: RandomData.random_paragraph, url: RandomData.random_url, price: RandomData.random_number, rating: RandomData.random_rating}
+        post :create, list_id: my_list.id, wish: {title: RandomData.random_sentence, body: RandomData.random_paragraph, url: RandomData.random_url, price_cents: RandomData.random_number, rating: RandomData.random_rating}
         expect(response).to redirect_to my_list
       end
     end
@@ -62,10 +64,10 @@ RSpec.describe WishesController, type: :controller do
         new_title = RandomData.random_sentence
         new_body = RandomData.random_paragraph
         new_url = RandomData.random_url
-        new_price = RandomData.random_number
+        new_price_cents = RandomData.random_number
         new_rating = RandomData.random_rating
 
-        put :update, list_id: my_list.id, id: my_wish.id, wish: {title: new_title, body: new_body, url: new_url, price: new_price, rating: new_rating}
+        put :update, list_id: my_list.id, id: my_wish.id, wish: {title: new_title, body: new_body, url: new_url, price_cents: new_price_cents, rating: new_rating}
         expect(response).to redirect_to lists_path
       end
     end
@@ -102,16 +104,16 @@ RSpec.describe WishesController, type: :controller do
 
     describe "POST create" do
       it "increases the number of Wish by 1" do
-        expect{post :create, list_id: my_list.id, wish: {title: RandomData.random_sentence, body: RandomData.random_paragraph, url: RandomData.random_url, price: RandomData.random_number, rating: RandomData.random_rating}}.to change(Wish,:count).by(1)
+        expect{post :create, list_id: my_list.id, wish: {title: RandomData.random_sentence, body: RandomData.random_paragraph, url: RandomData.random_url, price_cents: RandomData.random_number, rating: RandomData.random_rating}}.to change(Wish,:count).by(1)
       end
 
       it "assigns the new wish to @wish" do
-        post :create, list_id: my_list.id, wish: {title: RandomData.random_sentence, body: RandomData.random_paragraph, url: RandomData.random_url, price: RandomData.random_number, rating: RandomData.random_rating}
+        post :create, list_id: my_list.id, wish: {title: RandomData.random_sentence, body: RandomData.random_paragraph, url: RandomData.random_url, price_cents: RandomData.random_number, rating: RandomData.random_rating}
         expect(assigns(:wish)).to eq Wish.last
       end
 
       it "redirects to the list" do
-        post :create, list_id: my_list.id, wish: {title: RandomData.random_sentence, body: RandomData.random_paragraph, url: RandomData.random_url, price: RandomData.random_number, rating: RandomData.random_rating}
+        post :create, list_id: my_list.id, wish: {title: RandomData.random_sentence, body: RandomData.random_paragraph, url: RandomData.random_url, price_cents: RandomData.random_number, rating: RandomData.random_rating}
         expect(response).to redirect_to my_list
       end
     end
@@ -143,17 +145,17 @@ RSpec.describe WishesController, type: :controller do
         new_title = RandomData.random_sentence
         new_body = RandomData.random_paragraph
         new_url = RandomData.random_url
-        new_price = RandomData.random_number
+        new_price_cents = RandomData.random_number
         new_rating = RandomData.random_rating
 
-        put :update, list_id: my_list.id, id: my_wish.id, wish: {title: new_title, body: new_body, url: new_url, price: new_price, rating: new_rating}
+        put :update, list_id: my_list.id, id: my_wish.id, wish: {title: new_title, body: new_body, url: new_url, price_cents: new_price_cents, rating: new_rating}
 
         updated_wish = assigns(:wish)
         expect(updated_wish.id).to eq my_wish.id
         expect(updated_wish.title).to eq new_title
         expect(updated_wish.body).to eq new_body
         expect(updated_wish.url).to eq new_url
-        expect(updated_wish.price).to eq new_price
+        expect(updated_wish.price_cents).to eq new_price_cents
         expect(updated_wish.rating).to eq new_rating
 
       end
@@ -162,10 +164,10 @@ RSpec.describe WishesController, type: :controller do
         new_title = RandomData.random_sentence
         new_body = RandomData.random_paragraph
         new_url = RandomData.random_url
-        new_price = RandomData.random_number
+        new_price_cents = RandomData.random_number
         new_rating = RandomData.random_rating
 
-        put :update, list_id: my_list.id, id: my_wish.id, wish: {title: new_title, body: new_body, url: new_url, price: new_price, rating: new_rating}
+        put :update, list_id: my_list.id, id: my_wish.id, wish: {title: new_title, body: new_body, url: new_url, price_cents: new_price_cents, rating: new_rating}
         expect(response).to redirect_to my_list
       end
     end

@@ -3,7 +3,7 @@ include RandomData
 
 RSpec.describe ListsController, type: :controller do
   let (:my_user) { create(:user) }
-  let (:my_list) { create(:list, user: my_user) }
+  let (:my_list) { create(:list, user: my_user, public: true) }
   let (:my_private_list) { create(:list, user: my_user, public: false) }
 
   # context "guest" do
@@ -23,7 +23,7 @@ RSpec.describe ListsController, type: :controller do
       end
       it "assigns List.all to list" do
         get :index
-        expect(assigns(:lists)).to eq([my_list])
+        expect(assigns(:public_lists)).to eq([my_list])
       end
       it "does not include private lists in @lists" do
         get :index
@@ -113,7 +113,7 @@ RSpec.describe ListsController, type: :controller do
       end
       it "assigns my_list to @list" do
         get :index
-        expect(assigns(:lists)).to eq([my_list])
+        expect(assigns(:public_lists)).to eq([my_list])
       end
       it "does not include private lists in @lists" do
         get :index

@@ -12,6 +12,8 @@ RSpec.describe WelcomeController, type: :controller do
       get :index
       expect(response).to render_template("index")
     end
+
+    # test for latest public wishlists
   end
 
   describe "GET #about" do

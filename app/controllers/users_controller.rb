@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.friendly.find(params[:id])
+    @user = User.find(params[:id])
     @user_lists = @user.lists
     @user_public_lists = @user_lists.where(public: true)
   end

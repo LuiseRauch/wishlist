@@ -1,6 +1,7 @@
 <br>
 <div class="well text-center">
     <h4>Here are <%= @user.username %>'s public Wunschlists!</h4>
+    <%= render 'follow_form' %>
 </div>
 
 <% if @user_public_lists.each do |list| %>
