@@ -1,7 +1,12 @@
-<br>
 <div class="well text-center">
-    <h4>Here are <%= @user.username %>'s public Wunschlists!</h4>
-    <%= render 'follow_form' %>
+    <% if current_user == @user %>
+      <h4>Here are your public Wunschlists!</h4>
+    <% else %>
+      <h4>Here are <%= @user.username %>'s public Wunschlists!</h4>
+      <% if policy(List.new).create?%>
+        <%= render 'follow_form' %>
+      <% end %>
+    <% end %>
 </div>
 
 <% if @user_public_lists.each do |list| %>

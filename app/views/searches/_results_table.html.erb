@@ -12,7 +12,7 @@
           <%- @results.each do |result| %>
             <tr>
               <td>
-                <%= link_to result[:hint], result[:record_type] == "List" ? list_path(result[:record_id]) : user_path(result[:record_id]) %>
+                <%= link_to result[:hint], result[:record_type] == "List" ? list_path(result[:record_id]) : public_lists_user_path(result[:record_id]) %>
               </td>
             </tr>
           <% end %>

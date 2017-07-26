@@ -33,8 +33,8 @@ RSpec.describe User, type: :model do
     it "should respond to following?" do
       expect(user).to respond_to(:following?)
     end
-    it "should respond to follow!" do
-      expect(user).to respond_to(:follow!)
+    it "should respond to follow" do
+      expect(user).to respond_to(:follow)
     end
   end
 
@@ -51,33 +51,32 @@ RSpec.describe User, type: :model do
     end
   end
 
-  # let(:user) { create(:user) }
-  # let(:other_user) { User.create(username: "Other User", email: "newuser@example.com", password: "helloworld", password_confirmation: "helloworld") }
-  #
-  # describe '#following?' do
-  #   it "expect relationship between two users to be empty" do
-  #     expect(user.passive_relationships).to be_empty
-  #   end
-  # end
-  #
-  # describe '#follow' do
-  #   it "creates the active relationship between two users" do
-  #     user.follow!(other_user)
-  #     expect(user.passive_relationships.first.followed_id).to eq(other_user.id)
-  #   end
-  #
-  #   it "creates the passive relationship between two users" do
-  #     user.follow!(other_user)
-  #     expect(other_user.passive_relationships.first.follower_id).to eq(user.id)
-  #   end
-  # end
-  #
+  let(:user) { create(:user) }
+  let(:other_user) { User.create(username: "Other User", email: "newuser@example.com", password: "helloworld", password_confirmation: "helloworld") }
+
+  describe '#following?' do
+    it "expect relationship between two users to be empty" do
+      expect(user.active_relationships).to be_empty
+    end
+  end
+
+  describe '#follow' do
+    it "creates the active relationship between two users" do
+      user.follow(other_user)
+      expect(user.active_relationships.first.followed_id).to eq(other_user.id)
+    end
+
+    it "creates the passive relationship between two users" do
+      user.follow(other_user)
+      expect(other_user.passive_relationships.first.follower_id).to eq(user.id)
+    end
+  end
+
   # describe '#unfollow' do
-  #
   #   it "destroys the active relationship between two users" do
-  #     user.follow!(other_user)
-  #     user.unfollow!(other_user)
-  #     expect(user.passive_relationships.find_by.followed_id).to change(Relationship, :count).by(-1)
+  #     user.follow(other_user)
+  #     user.unfollow(other_user)
+  #     expect(user.active_relationships.find_by.followed_id).to change(Relationship, :count).by(-1)
   #   end
   # end
 end

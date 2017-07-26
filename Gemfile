@@ -53,6 +53,8 @@ gem 'money-rails', '~>1'
 
 gem 'httparty', '~> 0.13.7'
 
+gem 'will_paginate', '~> 3.1.1'
+
 group :production do
   gem 'rails_12factor'
 end

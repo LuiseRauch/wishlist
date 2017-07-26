@@ -3,24 +3,18 @@ Rails.application.routes.draw do
   get "autocomplete", to: "searches#autocomplete"
 
   resources :users, only: [:show]
-
-  resources :users do
-    get "lists"
-  end
-
   resources :users do
     member do
-      get :following, :followers
+      get :lists, :public_lists, :following, :followers
     end
   end
-
   devise_for :users, :path => 'devise'
 
   resources :lists do
     resources :wishes, except: [:index]
   end
-  
-  resources :relationships,       only: [:create, :destroy]
+
+  resources :relationships, only: [:create, :destroy]
 
   get 'about', to: 'welcome#about'
 

@@ -1,0 +1,20 @@
+<div class="well text-center">
+  <h1><%= @user.username %>'s friends.</h1>
+  <span><%= link_to "edit my profile", edit_user_registration_path(@user) %></span> |
+  <span><b>Wunschlists:</b> <%= link_to @user.lists.count, lists_user_path %></span>
+        <%= render 'shared/stats' %>
+</div>
+<div class="row text-center">
+  <div class="col-md-12">
+    <% if @users.any? %>
+      <% @users.each do |user| %>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <%= link_to(user.username, public_lists_user_path(user)) %>
+        </li>
+      </ul>
+      <% end %>
+      <%= will_paginate %>
+    <% end %>
+  </div>
+</div>
