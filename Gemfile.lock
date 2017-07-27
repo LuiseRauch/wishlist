@@ -256,6 +256,8 @@ GEM
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
     sixarm_ruby_unaccent (1.1.1)
+    social-share-button (0.10.0)
+      coffee-rails
     sort_alphabetical (1.1.0)
       unicode_utils (>= 1.2.2)
     spring (2.0.1)
@@ -329,6 +331,7 @@ DEPENDENCIES
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
   shoulda
+  social-share-button
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)

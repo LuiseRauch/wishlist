@@ -16,6 +16,7 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
  @import 'emojionearea.min';
+ @import "social-share-button";
 
 html,
 body {
@@ -48,7 +49,8 @@ body {
 }
 
 .user-info {
-  margin-top: 9px;
+  margin-top: 11px;
+  float: right;
 }
 
 .nav {
@@ -165,3 +167,16 @@ body {
 .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
 .rating > input:checked ~ label:hover ~ label { color: #ff8492;  }
+
+$size: 30px;
+
+.social-share-button {
+  float: right;
+  margin: -15px;
+  padding: 5px 5px;
+  .ssb-icon {
+    background-size: $size $size;
+    height: $size;
+    width: $size;
+  }
+}

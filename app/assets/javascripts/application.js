@@ -17,4 +17,5 @@
 //= require lodash
 //= require emojionearea_init
 //= require emojionearea.min
+//= require social-share-button
 //= require_tree .

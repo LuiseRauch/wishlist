@@ -57,6 +57,8 @@ gem 'will_paginate', '~> 3.1.1'
 
 gem 'emojionearea-rails', '~> 1.1.3'
 
+gem 'social-share-button'
+
 group :production do
   gem 'rails_12factor'
 end
