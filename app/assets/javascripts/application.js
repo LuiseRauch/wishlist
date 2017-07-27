@@ -15,4 +15,6 @@
 //= require turbolinks
 //= require bootstrap
 //= require lodash
+//= require emojionearea_init
+//= require emojionearea.min
 //= require_tree .

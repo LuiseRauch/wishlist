@@ -55,6 +55,8 @@ gem 'httparty', '~> 0.13.7'
 
 gem 'will_paginate', '~> 3.1.1'
 
+gem 'emojionearea-rails', '~> 1.1.3'
+
 group :production do
   gem 'rails_12factor'
 end

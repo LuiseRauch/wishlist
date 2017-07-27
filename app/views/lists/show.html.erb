@@ -1,29 +1,28 @@
-<div class="well">
-  <h1><%= @list.name %>
-    <% if @list.public %>
-      <span class="glyphicon glyphicon-eye-open"></span>
-    <% else %>
-      <span class="glyphicon glyphicon-eye-close"></span>
-    <% end %>
-  </h1>
-  <p class="lead"><%= @list.description %></p>
-  <div>
-    <% if policy(@list).edit? %>
-      <%= link_to "Edit Wunschlist", edit_list_path, class: 'btn btn-info btn-sm' %>
-    <% end %>
-    <% if policy(@list).destroy? %>
-      <%= link_to "Delete Wunschlist", @list, method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure you want to delete this wishlist?' } %>
-    <% end %>
-    <% if policy(@list).edit?%>
-      <%= link_to "New Wish", new_list_wish_path(@list), class: 'btn btn-success btn-sm' %>
-    <% end %>
-  </div>
-  <br>
-</div>
-
 <div class="row">
-  <div class="col-xs-12">
-    <table class="table table-bordered">
+  <div class="col-md-12">
+    <div class="well">
+      <h1><%= @list.name %>
+        <% if @list.public %>
+          <span class="glyphicon glyphicon-eye-open"></span>
+        <% else %>
+          <span class="glyphicon glyphicon-eye-close"></span>
+        <% end %>
+      </h1>
+      <p class="lead"><%= @list.description %></p>
+      <div>
+        <% if policy(@list).edit? %>
+          <%= link_to "Edit Wunschlist", edit_list_path, class: 'btn btn-info btn-sm' %>
+        <% end %>
+        <% if policy(@list).destroy? %>
+          <%= link_to "Delete Wunschlist", @list, method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure you want to delete this wishlist?' } %>
+        <% end %>
+        <% if policy(@list).edit?%>
+          <%= link_to "Add new Wish", new_list_wish_path(@list), class: 'btn btn-success btn-sm' %>
+        <% end %>
+      </div>
+    </div>
+
+    <table class="table table-bordered table-responsive">
       <thead>
         <tr>
           <th colspan="4">
@@ -34,7 +33,7 @@
       <tbody>
         <% if @list.wishes.each do |wish| %>
           <tr>
-            <td class="star-table-cell">
+            <td class="heart-table-cell">
               <% num_stars(wish.rating)[:full].times do %>
               <i class="fa fa-heart"></i>
               <% end %>
@@ -55,24 +54,25 @@
               <td class="link-table-cell">
                 <% img_url = display(wish.url) %>
                 <% if img_url == nil %>
-                  <%= link_to(wish.url, wish.url) %>
+                  <%= link_to "link", wish.url %>
                 <% else %>
-                  <%= link_to(image_tag(img_url, class: "img-responsive col-xs-12"), wish.url) %>
+                  <%= link_to(image_tag(img_url, class: "img-responsive"), wish.url) %>
                 <% end %>
               </td>
             <% end %>
             <td>
-              <p><%= wish.body %></p>
+              <p><%= sanitize gemojify( wish.body ) %></p>
             </td>
           </tr>
         <% end.empty? %>
           <tr>
-            <td colspan="2">
+            <td colspan="1">
               <p>No Wishes yet!</p>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
+
   </div>
 </div>

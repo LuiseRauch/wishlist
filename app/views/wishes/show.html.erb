@@ -1,7 +1,6 @@
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-md-12">
     <table class="table table-bordered table-responsive">
-
       <thead>
         <caption>
           <h2><%= @wish.title %></h2>
@@ -19,31 +18,22 @@
           </div>
         </caption>
         <tr>
-          <th>
-            rating
-          </th>
-          <th>
-            link
-          </th>
+          <th> rating </th>
+          <th> link </th>
           <% if @wish.url.present? %>
-            <th>
-              description
-            </th>
+            <th> description </th>
           <% end %>
           <% if @wish.price.present? %>
-          <th>
-            price
-          </th>
+            <th> price </th>
           <% end %>
-
         </tr>
       </thead>
 
       <tbody>
         <tr>
-          <td class="star-table">
+          <td class="heart-table">
             <% num_stars(@wish.rating)[:full].times do %>
-            <i class="fa fa-heart"></i>
+              <i class="fa fa-heart"></i>
             <% end %>
             <% num_stars(@wish.rating)[:empty].times do %>
               <i class="fa fa-heart-o"></i>
@@ -55,12 +45,12 @@
                 <% if img_url == nil %>
                   <%= link_to(@wish.url, @wish.url) %>
                 <% else %>
-                  <%= link_to(image_tag(img_url, class: "img-responsive col-xs-12"), @wish.url) %>
+                  <%= link_to(image_tag(img_url, class: "img-responsive"), @wish.url) %>
                 <% end %>
             </td>
           <% end %>
           <td>
-            <p><%= @wish.body %></p>
+            <p><%= sanitize gemojify( @wish.body ) %></p>
           </td>
           <% if @wish.price.present? %>
             <td>

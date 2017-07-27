@@ -15,7 +15,7 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
-
+ @import 'emojionearea.min';
 
 html,
 body {
@@ -71,6 +71,10 @@ body {
     color: #636c72!important;
 }
 
+.img-responsive {
+    width: 100%;
+}
+
 /* User sign in and sign up forms. */
 
 .border-form-div {
@@ -100,14 +104,17 @@ body {
 
 /* css for table cells*/
 
-.star-table-cell {
-    min-width: 133px;
-}
+// .heart-table-cell {
+//     min-width: 133px;
+// }
 
 .link-table-cell {
     max-width: 400px;
 }
 
+.btn {
+  padding: 5px 5px;
+}
 /* css for private/public lists */
 
 .glyphicon-eye-open {
@@ -119,7 +126,6 @@ body {
 }
 
 /* css for ratings*/
-
 /* read only stars */
 .fa-heart, .fa-heart-o, {
   color: #ff5066;
@@ -127,9 +133,7 @@ body {
   font-family: FontAwesome;
   display: inline-block;
 }
-
-/****** Style Star Rating Widget *****/
-
+/****** Style heart Rating Widget *****/
 .rating {
   float: left;
 }
@@ -151,13 +155,13 @@ body {
   white-space:nowrap;
 }
 
-/***** CSS Magic to Highlight Stars on Hover *****/
+/***** CSS Magic to Highlight Hearts on Hover *****/
 
-.rating > input:checked ~ label, /* show gold star when clicked */
-.rating:not(:checked) > label:hover, /* hover current star */
-.rating:not(:checked) > label:hover ~ label { color: #ff5066;  } /* hover previous stars in list */
+.rating > input:checked ~ label, /* show gold heart when clicked */
+.rating:not(:checked) > label:hover, /* hover current heart */
+.rating:not(:checked) > label:hover ~ label { color: #ff5066;  } /* hover previous heart in list */
 
-.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked + label:hover, /* hover current heart when changing rating */
 .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
 .rating > input:checked ~ label:hover ~ label { color: #ff8492;  }

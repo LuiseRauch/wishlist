@@ -20,7 +20,7 @@
   <% end %>
   <%= form_group_tag(wish.errors[:body]) do %>
     <%= f.label :body %>
-    <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wish body" %>
+    <%= f.text_area :body, class: 'form-control', placeholder: "Why do you need this?", input_html: { class: 'emojionearea', rows: 5 }  %>
   <% end %>
   <%= form_group_tag(wish.errors[:price]) do %>
     <%= f.label :price %>
