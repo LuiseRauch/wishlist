@@ -1,7 +1,9 @@
 <div class="row">
   <div class="col-md-12">
     <div class="well">
-      <span class="social_share_button"><%= social_share_button_tag(@list.name) %></span>
+      <% if policy(@list).edit? %>
+        <span class="social_share_button"><%= social_share_button_tag(@list.name) %></span>
+      <% end %>
       <h1><%= @list.name %>
         <% if @list.public %>
           <span class="glyphicon glyphicon-eye-open"></span>
