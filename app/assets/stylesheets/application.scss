@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
  @import "bootstrap-sprockets";
  @import "bootstrap";
  @import 'emojionearea.min';
@@ -47,12 +48,10 @@ body {
   text-align: center;
   margin: 20px 0;
 }
-
 .user-info {
   margin-top: 11px;
   float: right;
 }
-
 .nav {
   margin-top: 5px;
 }
@@ -168,6 +167,8 @@ body {
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
 .rating > input:checked ~ label:hover ~ label { color: #ff8492;  }
 
+
+/* css for social share buttons */
 $size: 30px;
 
 .social-share-button {
