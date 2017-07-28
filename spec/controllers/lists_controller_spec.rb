@@ -6,8 +6,66 @@ RSpec.describe ListsController, type: :controller do
   let (:my_list) { create(:list, user: my_user, public: true) }
   let (:my_private_list) { create(:list, user: my_user, public: false) }
 
-  # context "guest" do
-  # end
+  context "guest" do
+    describe "GET #index" do
+      it "returns http redirect" do
+        get :index
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    describe "GET show" do
+      it "returns http success" do
+        get :show, {id: my_list.id}
+        expect(response).to have_http_status(:success)
+      end
+      it "renders the #show view" do
+        get :show, {id: my_list.id}
+        expect(response).to render_template :show
+      end
+      it "assigns my_list to @list" do
+        get :show, {id: my_list.id}
+        expect(assigns(:list)).to eq(my_list)
+      end
+    end
+
+    describe "GET new" do
+      it "returns http redirect" do
+        get :new
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    describe "POST create" do
+      it "returns http redirect" do
+        post :create, list: {name: RandomData.random_sentence, description: RandomData.random_paragraph}
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    describe "GET edit" do
+      it "returns http redirect" do
+        get :edit, {id: my_list.id}
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    describe "PUT update" do
+      it "updates list with expected attributes" do
+        new_name = RandomData.random_sentence
+        new_description = RandomData.random_paragraph
+        put :update, id: my_list.id, list: { name: new_name, description: new_description }
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    describe "DELETE destroy" do
+      it "returns http redirect" do
+        delete :destroy, {id: my_list.id}
+        expect(response).to redirect_to(root_path)
+      end
+    end
+  end
 
 
   context "logged in user doing CRUD on a list they do NOT own" do
@@ -78,7 +136,7 @@ RSpec.describe ListsController, type: :controller do
     describe "GET edit" do
       it "returns http redirect" do
         get :edit, id: my_list.id
-        expect(response).to redirect_to(lists_path)
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -88,14 +146,14 @@ RSpec.describe ListsController, type: :controller do
         new_description = RandomData.random_paragraph
 
         put :update, id: my_list.id, list: { name: new_name, description: new_description }
-        expect(response).to redirect_to(lists_path)
+        expect(response).to redirect_to(root_path)
       end
     end
 
     describe "DELETE destroy" do
       it "returns http redirect" do
         delete :destroy, id: my_list.id
-        expect(response).to redirect_to(lists_path)
+        expect(response).to redirect_to(root_path)
       end
     end
   end

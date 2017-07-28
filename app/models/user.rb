@@ -37,8 +37,8 @@ class User < ApplicationRecord
     end
   end
 
-  # extend FriendlyId
-  # friendly_id :username, use: [:slugged, :history]
+  extend FriendlyId
+  friendly_id :username, use: [:slugged, :history]
 
   # Follows a user.
   def follow(other_user)

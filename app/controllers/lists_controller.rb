@@ -2,7 +2,8 @@ require 'json'
 
 class ListsController < ApplicationController
   def index
-    @public_lists = List.where(public: true)
+    @public_lists = policy_scope(List.where(public: true))
+    authorize @public_lists
   end
 
   def show

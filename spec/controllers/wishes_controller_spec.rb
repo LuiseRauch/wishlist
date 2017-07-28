@@ -55,7 +55,7 @@ RSpec.describe WishesController, type: :controller do
     describe "GET edit" do
       it "returns http redirect" do
         get :edit, list_id: my_list.id, id: my_wish.id
-        expect(response).to redirect_to lists_path
+        expect(response).to redirect_to root_path
       end
     end
 
@@ -68,14 +68,14 @@ RSpec.describe WishesController, type: :controller do
         new_rating = RandomData.random_rating
 
         put :update, list_id: my_list.id, id: my_wish.id, wish: {title: new_title, body: new_body, url: new_url, price_cents: new_price_cents, rating: new_rating}
-        expect(response).to redirect_to lists_path
+        expect(response).to redirect_to root_path
       end
     end
 
     describe "DELETE destroy" do
       it "returns http redirect" do
         delete :destroy, list_id: my_list.id, id: my_wish.id
-        expect(response).to redirect_to lists_path
+        expect(response).to redirect_to root_path
       end
     end
   end

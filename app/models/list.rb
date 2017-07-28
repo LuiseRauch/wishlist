@@ -14,5 +14,4 @@ class List < ApplicationRecord
   def as_indexed_json(options={})
     self.as_json( only: [ :name ] )
   end
-
 end
