@@ -56,4 +56,48 @@ class User < ApplicationRecord
   def as_indexed_json(options={})
     self.as_json( only: [ :username, :email, :first_name, :last_name, :city ], methods: :full_name )
   end
+
+  # create a task with whenever
+  # the task iterates through all users that follow at least one user
+  # if there is an update from those users that are followed
+  # generate email with the actual updates
+
+  # def get_friends?(user)
+  #   friends = []
+  #
+  #   if user.following.any?
+  #     user.following.each do |friend|
+  #       friends << friend
+  #     end
+  #   end
+  #   has_updates?(friends)
+  # end
+  #
+  # def has_updates?(friends)
+  #
+  #   active_public_lists = []
+  #   active_wishes = []
+  #
+  #     friends.each do |friend|
+  #       active_public_lists << friend.lists.where(public: true).where("updated_at >= ?", Time.zone.now - 24.hours)
+  #     end
+  #
+  #     friends.each do |friend|
+  #       public_wishes = friend.wishes.joins(:list).where(lists: { public: true })
+  #       active_wishes <<  public_wishes.where("wishes.updated_at >= ?", Time.zone.now - 24.hours)
+  #     end
+  #
+  #     puts active_public_lists
+  #     puts active_wishes
+  # end
+  #
+  # def send_daily_updates(active_public_lists, active_wishes)
+  #
+  #
+  # end
+
+  # scope :recent, -> { where("updated_at >= ?", Time.zone.now - 24.hours ) }
+  # active_public_lists.recent.any? / active_wishes.recent.any?
+
+
 end
