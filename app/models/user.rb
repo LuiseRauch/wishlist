@@ -62,42 +62,32 @@ class User < ApplicationRecord
   # if there is an update from those users that are followed
   # generate email with the actual updates
 
-  # def get_friends?(user)
-  #   friends = []
-  #
-  #   if user.following.any?
-  #     user.following.each do |friend|
-  #       friends << friend
-  #     end
-  #   end
-  #   has_updates?(friends)
-  # end
-  #
-  # def has_updates?(friends)
-  #
-  #   active_public_lists = []
-  #   active_wishes = []
-  #
-  #     friends.each do |friend|
-  #       active_public_lists << friend.lists.where(public: true).where("updated_at >= ?", Time.zone.now - 24.hours)
-  #     end
-  #
-  #     friends.each do |friend|
-  #       public_wishes = friend.wishes.joins(:list).where(lists: { public: true })
-  #       active_wishes <<  public_wishes.where("wishes.updated_at >= ?", Time.zone.now - 24.hours)
-  #     end
-  #
-  #     puts active_public_lists
-  #     puts active_wishes
-  # end
-  #
-  # def send_daily_updates(active_public_lists, active_wishes)
-  #
-  #
-  # end
 
-  # scope :recent, -> { where("updated_at >= ?", Time.zone.now - 24.hours ) }
-  # active_public_lists.recent.any? / active_wishes.recent.any?
+  def send_daily_updates(user)
+    friends = []
+    active_public_lists = []
+    active_wishes = []
 
+    # User.find_each do |user|
+      if user.following.any?
+        user.following.each do |friend|
+          friends << friend
+        end
+      end
 
+      if friends.any?
+        friends.each do |friend|
+          active_public_lists << friend.lists.where(public: true).where("updated_at >= ?", Time.zone.now - 24.hours)
+        end
+        friends.each do |friend|
+          public_wishes = friend.wishes.joins(:list).where(lists: { public: true })
+          active_wishes <<  public_wishes.where("wishes.updated_at >= ?", Time.zone.now - 24.hours)
+        end
+      end
+
+      if active_wishes.any? || active_public_lists.any?
+        UpdateMailer.daily_update(user, friends, active_wishes, active_public_lists).deliver_now
+      end
+    # end
+  end
 end

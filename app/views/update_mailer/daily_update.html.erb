@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>New updates on <a href="www.wunschlist.io">Wunschlist.io</a></h1>
+
+    <% @friends.each do |friend| %>
+      <% if @active_public_lists.any? %>
+        <ul>
+          <% @active_public_lists.each do |list| %>
+            <li><%= list.name %></li>
+          <% end %>
+        </ul>
+      <% end %>
+      <% if @active_wishes.any? %>
+        <ul>
+          <% @active_wishes.each do |wish| %>
+            <li><%= wish.title %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    <% end %>
+  </body>
